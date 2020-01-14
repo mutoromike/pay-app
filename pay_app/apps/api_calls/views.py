@@ -21,7 +21,7 @@ class PaymentC2BView(CreateAPIView):
 
 class ConfirmationC2BView(CreateAPIView):
 
-    query = PaymentsC2B.objects.all()
+    query = PaymentC2B.objects.all()
     serilizer_class = C2BConfirmationSerializer
     permission_classes = [AllowAny]
 
@@ -30,20 +30,6 @@ class ConfirmationC2BView(CreateAPIView):
         print("this is confirmation data", request.data)
         return Response({"ResultDesc": 0})
 # class ImplementLNMView(CreateAPIView):
-
-#     def get_token():
-#         data = os.getenv("CONSUMER_KEY") + ":" + os.getenv("CONSUMER_SECRET")
-
-#         headers = {
-#             "Authorization": "Basic " + encode_data(data),
-#             "Content-Type": "aplication/json"
-#         }
-#         api_URL = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
-
-#         r = requests.get(api_URL, headers=headers)
-#         access_token = r.json()["access_token"]
-
-#         return access_token
 
 #     def lipa_na_mpesa():
 #         access_token = get_token()
