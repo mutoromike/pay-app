@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from pay_app.apps.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/validation', name="validation", PaymentC2BView.as_view()),
+    path('api/v1/confirmation', name="confirmation", ConfirmationC2BView.as_view())
 ]
