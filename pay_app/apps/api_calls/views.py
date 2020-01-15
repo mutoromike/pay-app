@@ -4,17 +4,19 @@ from rest_framework.response import Response
 # from rest_framework import status, exceptions
 
 from pay_app.apps.api_calls.models import PaymentC2B
-from pay_app.apps.api_calls.serializers import C2BPaymentSerializer, C2BConfirmationSerializer
+from pay_app.apps.api_calls.serializers import C2BValidationSerializer, C2BConfirmationSerializer
+from pay_app.helpers.helpers import get_token
 
 
-class PaymentC2BView(CreateAPIView):
+class ValidationC2BView(CreateAPIView):
 
     query = PaymentC2B.objects.all()
-    serilizer_class = C2BPaymentSerializer
+    serilizer_class = C2BValidationSerializer
     permission_classes = [AllowAny]
 
 
     def create(self, request):
+        token = get_token()
         print("this is validation data", request.data)
         return Response({"data": "It worked"})
 
